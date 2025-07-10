@@ -9,8 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -27,17 +25,8 @@ jobs:
             # Папка проекта
             PROJECT_DIR=/var/www/clinic_appointments
 
-            mkdir -p $PROJECT_DIR
-            cd $PROJECT_DIR
-
-            # Записываем .env из секретов GitHub (внимание! отступы убраны)
-            cat > .env <<EOF
-            DB_HOST=${{ secrets.DB_HOST }}
-            DB_NAME=${{ secrets.DB_NAME }}
-            DB_USER=${{ secrets.DB_USER }}
-            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            DB_PORT=${{ secrets.DB_PORT }}
-            EOF
+            mkdir -p "$PROJECT_DIR"
+            cd "$PROJECT_DIR"
 
             # Обновляем или клонируем репозиторий
             if [ -d ".git" ]; then
@@ -53,6 +42,15 @@ jobs:
               git clone https://github.com/kukarek/clinic_appointments.git .
             fi
 
+            # Записываем .env из секретов GitHub (убраны отступы в содержимом)
+            cat > .env <<EOF
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            DB_PORT=${{ secrets.DB_PORT }}
+            EOF
+
             # Собираем и запускаем контейнеры
             docker-compose pull
             docker-compose build
@@ -60,7 +58,3 @@ jobs:
 
             # Запускаем тесты и показываем покрытие
             docker-compose run --rm api pytest --cov=app --cov-report=term-missing
-
-
-
-
