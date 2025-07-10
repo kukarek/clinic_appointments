@@ -9,7 +9,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    
+
     steps:
+      
+      - name: Check secrets presence
+        run: |
+          echo "SERVER_HOST is set: ${SERVER_HOST:+yes}"
+          echo "SERVER_USER is set: ${SERVER_USER:+yes}"
+          echo "SSH_PRIVATE_KEY is set: ${SSH_PRIVATE_KEY:+yes}"
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Checkout repo
         uses: actions/checkout@v3
 
