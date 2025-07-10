@@ -1,0 +1,11 @@
+# Skills (0–10):
+Python: 7
+FastAPI: 4
+Docker/Compose: 6
+GitHub Actions: 5
+SQL: 8
+AI-код / LLM: 5
+Встраивание решений в бизнес-процессы: 6
+
+Английский: да
+Трекинг задач: Kanban (GitHub Projects, Trello)

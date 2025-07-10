@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# .env files
+.env
+.env.*
+!.env.example
+
+# Virtualenv
+.venv/
+venv/
+
+# VSCode
+.vscode/
+
+# Pytest cache
+.cache/
+
+# Docker
+*.pid
+*.db
+
+# System
+.DS_Store
+Thumbs.db
+
+# Reports
+coverage/
+htmlcov/
