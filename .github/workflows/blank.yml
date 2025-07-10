@@ -13,11 +13,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Python 3.11 (локально для тестов и линтов)
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
       - name: Deploy to server with docker-compose
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -46,7 +41,7 @@ jobs:
             if [ -d ".git" ]; then
               echo "Updating existing repo"
               git fetch origin
-              git reset --hard origin/main
+              git reset --hard origin/master
             else
               echo "Cloning repo"
               git clone https://github.com/kukarek/clinic_appointments.git .
@@ -61,4 +56,4 @@ jobs:
             docker-compose run --rm api pytest --cov=app --cov-report=term-missing
 
 
-            
+
