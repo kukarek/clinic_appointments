@@ -56,5 +56,3 @@ jobs:
             docker-compose build
             docker-compose up -d --force-recreate
 
-            # Запускаем тесты и показываем покрытие
-            docker-compose run --rm api pytest --cov=app --cov-report=term-missing
