@@ -45,10 +45,9 @@ jobs:
               git fetch origin
               git reset --hard origin/master
             else
-              # если папка не пуста — почистить
               if [ "$(ls -A .)" ]; then
                 echo "Directory not empty, cleaning up..."
-                rm -rf ./*
+                rm -rf ./* ./.??*
               fi
               echo "Cloning repo"
               git clone https://github.com/kukarek/clinic_appointments.git .
